@@ -66,7 +66,7 @@ public class Executable {
 	public void registrarEstudiante() {
 		
 		String nombreEstudiante, codigoEstudiante;
-		int edadEstudiante;
+		int edadEstudiante, decisionBarrrioEstudiante;
 		
 		System.out.println("Ingrese nombre del estudiante: ");
 		
@@ -82,25 +82,29 @@ public class Executable {
 		
 		codigoEstudiante = reader.nextLine();
 		
+		System.out.println("Ingrese el código del barrio del estudiante, 1: Norte, 2: Sur, 3: Oriente, 4: Occidente, 5: Fuera de cali ");
+		
+		barrioEstudiante = reader.nextInt();
 		//System.out.println("Datos del estudiante: \n" + 
 		//"Nombre: " + nombreEstudiante + "\n" + 
 		//"Edad: " + edadEstudiante + "\n" + 
 		//"Codigo: " + codigoEstudiante);
 		
 		
-		cont.agregarEstudiante(cont.crearEstudiante(nombreEstudiante, edadEstudiante, codigoEstudiante));
+		cont.agregarEstudiante(cont.crearEstudiante(nombreEstudiante, edadEstudiante, codigoEstudiante, cont.retornaTipoDeBarrio(decisionBarrioEstudiante))); // cont es controladora, se llama para usar los metodos de la controladora
+		// Llamamos al metodo agregarEstudiante de la controladora, en el otro parentesis se vuelve a llamar a la controladora con el método de crearEstudiante, ya que ese es el metodo que nos retorna al estudiante ya creado. 
 	}
 
 	public void imprimirEstudiantes() {
 
-		int cantidadEstudiantes = cont.obtenerCantidadEstudiantes();
+		int cantidadEstudiantes = cont.obtenerCantidadEstudiantes(); // Se reciben el total de estudiantes
 
-		for(int i = 0; i <= cantidadEstudiantes; i++) {
-			String impresionEstudiante = cont.listarEstudiante(i);
-			if(impresionEstudiante != "") {
-				System.out.println(impresionEstudiante);
-			} else {
-				break;
+		for(int i = 0; i <= cantidadEstudiantes; i++) { // Se repite el ciclo hasta el total de estudiantes que hay registrados
+			String impresionEstudiante = cont.listarEstudiante(i); // Se llama al método que ya creamos en la controladora para buscar los estudiantes
+			if(impresionEstudiante != "") { // != "" significa que es un null (revisar el metodo que hay en controladora)
+				System.out.println(impresionEstudiante); // Se imprime la información de cada estudiante
+			} else { 
+				break; // Se rompe el ciclo si la condición no se cumple, pues significaria que no hay más estudiantes (null)
 			}
 			
 		}

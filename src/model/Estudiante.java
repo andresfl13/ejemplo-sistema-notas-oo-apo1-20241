@@ -5,15 +5,19 @@ public class Estudiante {
     private String nombre;
     private int edad;
     private String codigoEstudiante;
+	private Barrio barrioEstudiante; // Para el enum
     private Semestre[] semestres; 
 
-    public Estudiante(String nombre, int edad, String codigoEstudiante) {
+    public Estudiante(String nombre, int edad, String codigoEstudiante, Barrio barrioEstudiante) {
         this.nombre = nombre;
         this.edad = edad;
         this.codigoEstudiante = codigoEstudiante;
+		this.barrioEstudiante = barrioEstudiante;
         this.semestres = new Semestre[10]; 
     }
-
+	public void setBarrio (Barrio barrio) {
+		barrioEstudiante = barrio;
+	}
     public String getNombre() {
         return nombre;
     }
